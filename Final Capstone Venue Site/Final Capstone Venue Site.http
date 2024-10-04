@@ -1,0 +1,6 @@
+@Final_Capstone_Venue_Site_HostAddress = http://localhost:5167
+
+GET {{Final_Capstone_Venue_Site_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
