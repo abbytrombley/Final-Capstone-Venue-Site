@@ -1,5 +1,8 @@
-﻿/*using Microsoft.Data.SqlClient;
-using System;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Hosting;
+using Final_Capstone_Venue_Site.Models;
+using Final_Capstone_Venue_Site.Utils;
+
 
 namespace Final_Capstone_Venue_Site.Repositories
 {
@@ -7,7 +10,7 @@ namespace Final_Capstone_Venue_Site.Repositories
     {
         public UsersRepository(IConfiguration configuration) : base(configuration) { }
 
-        public UsersProfile GetByEmail(string email)
+        public List<Users> GetAll()
         {
             using (var conn = Connection)
             {
@@ -15,115 +18,30 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
-                          FROM UserProfile up
-                               LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                         WHERE Email = @email";
-
-                    DbUtils.AddParameter(cmd, "@email", email);
-
-                    UserProfile userProfile = null;
-
+                        SELECT Id, Email, Password, IsAdmin, DisplayName 
+                          FROM UserProfile
+                      ORDER BY UserName ASC    
+                                       ";
                     var reader = cmd.ExecuteReader();
-                    if (reader.Read())
-                    {
-                        userProfile = new UserProfile()
-                        {
-                            Id = DbUtils.GetInt(reader, "Id"),
-                            FirstName = DbUtils.GetString(reader, "FirstName"),
-                            LastName = DbUtils.GetString(reader, "LastName"),
-                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
-                            Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
-                            }
-                        };
-                    }
-                    reader.Close();
-
-                    return userProfile;
-                }
-            }
-        }
-
-        public void Add(UserProfile userProfile)
-        {
-            using (var conn = Connection)
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"INSERT INTO UserProfile (FirstName, LastName, DisplayName, 
-                                                                 Email, CreateDateTime, ImageLocation, UserTypeId)
-                                        OUTPUT INSERTED.ID
-                                        VALUES (@FirstName, @LastName, @DisplayName, 
-                                                @Email, @CreateDateTime, @ImageLocation, @UserTypeId)";
-                    DbUtils.AddParameter(cmd, "@FirstName", userProfile.FirstName);
-                    DbUtils.AddParameter(cmd, "@LastName", userProfile.LastName);
-                    DbUtils.AddParameter(cmd, "@DisplayName", userProfile.DisplayName);
-                    DbUtils.AddParameter(cmd, "@Email", userProfile.Email);
-                    DbUtils.AddParameter(cmd, "@CreateDateTime", userProfile.CreateDateTime);
-                    DbUtils.AddParameter(cmd, "@ImageLocation", userProfile.ImageLocation);
-                    DbUtils.AddParameter(cmd, "@UserTypeId", userProfile.UserTypeId);
-
-                    userProfile.Id = (int)cmd.ExecuteScalar();
-                }
-            }
-        }
-
-        public List<UserProfile> GetAll()
-        {
-            using (var conn = Connection)
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = @"
-                        SELECT up.Id, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
-                          FROM UserProfile up
-                               LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                               ORDER BY up.DisplayName";
-
-
-                    var reader = cmd.ExecuteReader();
-
-                    var users = new List<UserProfile>();
+                    var userProfiles = new List<Users>();
 
                     while (reader.Read())
                     {
-                        users.Add(new UserProfile()
+                        userProfiles.Add(new Users()
                         {
-                            Id = DbUtils.GetInt(reader, "Id"),
-                            FirstName = DbUtils.GetString(reader, "FirstName"),
-                            LastName = DbUtils.GetString(reader, "LastName"),
-                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
-                            Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
-                            }
+                            Id = DbUtils.GetInt(reader, "id"),
+                            Email = DbUtils.GetString(reader, "userName"),
+                            Password = DbUtils.GetString(reader, "Pasword"),
+                            IsAdmin = DbUtils.GetBoolean(reader, "IsAdmin"),
+                            DisplayName = DbUtils.GetString(reader,"DisplayName")
                         });
                     }
                     reader.Close();
-
-                    return users;
+                    return userProfiles;
                 }
             }
         }
-        public UserProfile GetById(int id)
+        public Users GetUserByDisplayName(string displayName)
         {
             using (var conn = Connection)
             {
@@ -131,62 +49,51 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, up.FirstName, up.LastName, up.DisplayName, 
-                               up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId,
-                               ut.Name AS UserTypeName
-                          FROM UserProfile up
-                               LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                         WHERE up.Id = @Id";
+                        SELECT Id, DisplayName
+                        FROM [User]
+                        WHERE DisplayName = @displayName";
 
-                    DbUtils.AddParameter(cmd, "@Id", id);
+                    DbUtils.AddParameter(cmd, "@displayName", displayName);
 
-                    UserProfile userProfile = null;
+                    Users user = null;
 
                     var reader = cmd.ExecuteReader();
 
                     if (reader.Read())
                     {
-                        userProfile = new UserProfile()
+                        user = new Users()
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
-                            FirstName = DbUtils.GetString(reader, "FirstName"),
-                            LastName = DbUtils.GetString(reader, "LastName"),
-                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
-                            Email = DbUtils.GetString(reader, "Email"),
-                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
-                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
-                            }
+                            DisplayName = DbUtils.GetString(reader, "DisplayName")
                         };
                     }
+
                     reader.Close();
 
-                    return userProfile;
+                    return user;
                 }
             }
         }
-
-        public void UpdateType(UserProfile userProfile)
+        public void Add(Users user)
         {
             using (var conn = Connection)
             {
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"UPDATE UserProfile
-                                           SET UserTypeId = @UserTypeId
-                                           WHERE Id = @Id";
+                    cmd.CommandText = @"
+                            INSERT INTO [User] (DisplayName)
+                            OUTPUT INSERTED.ID
+                            VALUES (@displayName)
+    ";
 
-                    DbUtils.AddParameter(cmd, "@UserTypeId", userProfile.UserTypeId);
-                    DbUtils.AddParameter(cmd, "@Id", userProfile.Id);
+                    DbUtils.AddParameter(cmd, "@displayName", user.DisplayName);
 
-                    cmd.ExecuteNonQuery();
+                    user.Id = (int)cmd.ExecuteScalar();
                 }
             }
         }
     }
-}*/
+}
+   
+        
