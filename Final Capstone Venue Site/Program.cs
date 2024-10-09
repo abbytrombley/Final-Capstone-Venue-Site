@@ -10,6 +10,8 @@ namespace Final_Capstone_Venue_Site
 
             // Add services to the container.
             builder.Services.AddTransient<IUsersRepository, UsersRepository>();
+            builder.Services.AddTransient<IMerchRepository, MerchRepository>();
+            builder.Services.AddTransient<IEventsRepository, EventsRepository>();
             builder.Services.AddControllers();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

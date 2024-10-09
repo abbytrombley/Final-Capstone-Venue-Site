@@ -15,12 +15,48 @@ namespace Final_Capstone_Venue_Site.Controllers
             _usersRepository = usersRepository;
         }
 
+
+
+
+
+
+
+        //GET ALL
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(_usersRepository.GetAll());
         }
 
+
+
+
+
+
+
+
+
+        //GET BY ID
+        [HttpGet("GetUserById/{id}")]
+        public IActionResult GetUsersById(int id)
+        {
+            var user = _usersRepository.GetUsersById(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
+
+
+
+
+
+
+
+
+        //GET BY DISPLAY NAME
         [HttpGet("GetUserByDisplayName")]
         public IActionResult GetByDisplayName(string displayName)
         {
@@ -32,11 +68,59 @@ namespace Final_Capstone_Venue_Site.Controllers
             }
             return Ok(user);
         }
+
+
+
+
+
+
+
+
+
+
+        //ADD
         [HttpPost]
         public IActionResult Post(Users user)
         {
             _usersRepository.Add(user);
             return CreatedAtAction("Get", new { id = user.Id }, user);
+        }
+
+
+
+
+
+
+
+
+
+        //UPDATE
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, Users users)
+        {
+            if (id != users.Id)
+            {
+                return BadRequest();
+            }
+            _usersRepository.Update(users);
+            return NoContent();
+        }
+
+
+
+
+
+
+
+
+
+
+        //DELETE
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _usersRepository.Delete(id);
+            return NoContent();
         }
     }
 }
