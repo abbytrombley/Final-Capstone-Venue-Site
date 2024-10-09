@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace Final_Capstone_Venue_Site.DbUtils
+namespace Final_Capstone_Venue_Site.Utils
 {
     public class DbUtils
     {
@@ -32,6 +32,11 @@ namespace Final_Capstone_Venue_Site.DbUtils
         public static int GetInt(SqlDataReader reader, string column)
         {
             return reader.GetInt32(reader.GetOrdinal(column));
+        }
+
+        public static bool GetBoolean(SqlDataReader reader, string column)
+        {
+            return reader.GetBoolean(reader.GetOrdinal(column));
         }
 
         /// <summary>
