@@ -2,8 +2,8 @@
 import "./NavBar.css"
 import { Link } from "react-router-dom";
 
-export const NavBar = ({ currentUser }) => {
-  const userId = currentUser.id;                               
+export const NavBar = () => {
+                              
 
   return (
     <div className="nav-container">
@@ -11,7 +11,7 @@ export const NavBar = ({ currentUser }) => {
         <i>
         <img
             alt="logo"
-            src="src/assets/logo.png"
+            src="src/assets/NavBarLogo.png"
             style={{
               height: 100,
               width: 100,
@@ -20,6 +20,10 @@ export const NavBar = ({ currentUser }) => {
           />
         </i>
         <li className="navbar-pages"> <Link to="/">Home</Link></li>
+        <li className="navbar-pages"> <Link to="/Calendar">Calendar</Link></li>
+        <li className="navbar-pages"> <Link to="/Merch">Merch</Link></li>
+        <li className="navbar-pages"> <Link to="/FAQ">FAQ</Link></li>
+        <li className="navbar-pages"> <Link to="/Checkout">Checkout</Link></li>
         <Link to="/Login" className="logout-link">
             {" "}
             Logout

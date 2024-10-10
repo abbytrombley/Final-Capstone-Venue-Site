@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavBar } from "../Nav/NavBar.jsx";
-import { Welcome } from "../Components/Welcome/Welcome.jsx";
 import { Outlet, Route, Routes } from "react-router-dom";
+import HomePage from "../HomePage.jsx";
 
 
 export const ApplicationViews = () => {
@@ -25,7 +25,9 @@ export const ApplicationViews = () => {
           </>
         }
       >
-        <Route path="/" element={<Welcome />} index />
+        <Route index path="/" element={<HomePage />}/>
+        <Route path="/Merch">
+        </Route>
       </Route>
     </Routes>
   );

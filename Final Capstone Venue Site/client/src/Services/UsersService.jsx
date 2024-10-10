@@ -1,7 +1,7 @@
-const apiUrl = "https://localhost:5001/api/UserProfile";
+const apiUrl = "https://localhost:5173/api/UserProfile";
 
 //Fetch to login an existing user
-//localhost:5001/api/UserProfile/GetByEmail?email=angel%40vamps.com
+
 export const loginUser = (email) => {
   return fetch(`${apiUrl}/getbyemail?email=${email}`).then((res) => res.json());
 };
@@ -27,7 +27,7 @@ export const getAllUsers = () => {
 };
 
 //Fetch to get a single user by ID
-//https://localhost:5001/api/UserProfile/2
+
 export const getUserById = (userId) => {
   return fetch(`${apiUrl}/${userId}`).then((res) => res.json());
 };
