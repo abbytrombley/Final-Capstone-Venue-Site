@@ -26,7 +26,7 @@ namespace Final_Capstone_Venue_Site.Repositories
                 {
                     cmd.CommandText = @"SELECT m.Id, m.Picture, m.ItemName, m.Description, m.Price, m.Quantity
                                     FROM Merch m
-                                    ORDER BY m.Name ";
+                                    ORDER BY m.ItemName ";
 
                     var reader = cmd.ExecuteReader();
                     var merch = new List<Merch>();
@@ -38,7 +38,7 @@ namespace Final_Capstone_Venue_Site.Repositories
                             Picture = reader.GetString(reader.GetOrdinal("Picture")),
                             ItemName = reader.GetString(reader.GetOrdinal("ItemName")),
                             Description = reader.GetString(reader.GetOrdinal("Description")),
-                            Price = reader.GetInt32(reader.GetOrdinal("Price")),
+                            Price = reader.GetDouble(reader.GetOrdinal("Price")),
                             Quantity = reader.GetInt32(reader.GetOrdinal("Quantity"))
 
                         });
@@ -113,19 +113,20 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO UserProfile (UserName, FirstName, LastName, Email, ImageUrl)
+                        INSERT INTO Users (Picture, ItemName, Description, Price, Quantity)
                         OUTPUT INSERTED.ID
-                        VALUES (@UserName, @FirstName, @LastName, @Email, @ImageUrl)
+                        VALUES (@Picture, @ItemName, @Description, @Price, @Quantity)
                                        ";
-                    DbUtils.AddParameter(cmd, "@UserName", profile.UserName);
-                    DbUtils.AddParameter(cmd, "@FirstName", profile.FirstName);
-                    DbUtils.AddParameter(cmd, "@LastName", profile.LastName);
-                    DbUtils.AddParameter(cmd, "@Email", profile.Email);
-                    DbUtils.AddParameter(cmd, "@ImageUrl", profile.ImageUrl);
+                    DbUtils.AddParameter(cmd, "@Picture", merch.Picture);
+                    DbUtils.AddParameter(cmd, "@ItemName", merch.ItemName);
+                    DbUtils.AddParameter(cmd, "@Description", merch.Description);
+                    DbUtils.AddParameter(cmd, "@Price", merch.Price);
+                    DbUtils.AddParameter(cmd, "@Quantity", merch.Quantity);
+                    DbUtils.AddParameter(cmd, "@Id", merch.Id);
 
-                    profile.Id = (int)cmd.ExecuteScalar();
+                    merch.Id = (int)cmd.ExecuteScalar();
 
-                    merch.Id = id;
+                   /* merch.Id = id;*/
                 }
             }
         }
@@ -150,10 +151,18 @@ namespace Final_Capstone_Venue_Site.Repositories
                             UPDATE Merch
                             SET 
                                 [ItemName] = @itemname
+                                [Picture] = @picture
+                                [Description] = @description
+                                [Price] = @price
+                                [Quantity] = @quantity
                             WHERE Id = @id";
 
                     DbUtils.AddParameter(cmd, "@itemname", merch.ItemName);
                     DbUtils.AddParameter(cmd, "@id", merch.Id);
+                    DbUtils.AddParameter(cmd, "@picture", merch.Picture);
+                    DbUtils.AddParameter(cmd, "@description", merch.Description);
+                    DbUtils.AddParameter(cmd, "@price", merch.Price);
+                    DbUtils.AddParameter(cmd, "@quantity", merch.Quantity);
 
                     cmd.ExecuteNonQuery();
                 }

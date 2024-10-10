@@ -109,12 +109,17 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                 INSERT INTO Events (ArtistName)
+                 INSERT INTO Events (ArtistName, Picture, SupportingArtist, Price, Date)
                  OUTPUT INSERTED.ID
-                 VALUES (@artistname);
+                 VALUES (@artistname, @picture, @supportingartist, @price, @date);
              ";
 
                     DbUtils.AddParameter(cmd, "@artistName", events.ArtistName);
+                    DbUtils.AddParameter(cmd, "@id", events.Id);
+                    DbUtils.AddParameter(cmd, "@picture", events.Picture);
+                    DbUtils.AddParameter(cmd, "@supportingartist", events.SupportingArtist);
+                    DbUtils.AddParameter(cmd, "@price", events.Price);
+                    DbUtils.AddParameter(cmd, "@date", events.Date);
 
                     int id = (int)cmd.ExecuteScalar();
 
@@ -139,8 +144,12 @@ namespace Final_Capstone_Venue_Site.Repositories
                 {
                     cmd.CommandText = @"
                                 UPDATE Events
-                                SET 
-                                    [ArtistName] = @artistName
+                                SET
+                                     [ArtistName] = @artistName
+                                     [Picture] = @picture
+                                     [SupportingArtist] = @supportingartist
+                                     [Price] = @price
+                                     [Date] = @date
 
                                 WHERE Id = @id";
 
