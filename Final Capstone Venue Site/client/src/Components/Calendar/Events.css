@@ -1,0 +1,35 @@
+/* Purpose: Styling for Merch page */
+.events{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.single-event{
+    width: 30%;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+fieldset{
+    margin: 10px;
+}
+
+.event-images{
+    width: 100%;
+    height: 100%;
+}
+
+
+.title_events {
+    color: white;
+}
+
+.edit__events {
+    color: white;
+}
+
+.new__event {
+    color: white;
+}
+

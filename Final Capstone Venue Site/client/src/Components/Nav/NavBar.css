@@ -6,11 +6,13 @@
     position: fixed;
     top: 0;
     width: 100vw;
+    justify-content: left;
   }
+
 .navbar-TCC {
-    background-color:#8ba1bb;
-    border-top: 7px groove #e5efc5;
-    border-bottom: 7px groove #e5efc5;
+    background-color: darkslategrey;
+    border-top: 7px groove darkslategrey;
+    border-bottom: 7px groove darkslategrey;
     display: flex;
     flex-direction: row;
     text-align: center;
@@ -19,7 +21,7 @@
     margin: 0;
     padding: 0;
     overflow: hidden;
-    width: 100vw;
+    width: 1000vw;
     max-height: 9rem;
   }
   .navbar-pages {
@@ -30,3 +32,25 @@
     padding: 14px 16px;
     text-decoration: none;
   }
+
+/*   
+.navbar {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+  margin: auto;
+  background-color: lavender;
+  border-style: outset;
+  border-radius: 25px;
+  border-color: white;
+  border-width: 5px;
+  font-family: sans-serif;
+
+}
+
+.navbar-item {
+  color: fuchsia;
+  text-align: center;
+  margin: 10px;
+} */

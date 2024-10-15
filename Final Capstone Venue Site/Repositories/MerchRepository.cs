@@ -84,7 +84,7 @@ namespace Final_Capstone_Venue_Site.Repositories
                         {
                             Id = id,
 
-                            ItemName = reader.GetString(reader.GetOrdinal("Name")),
+                            ItemName = reader.GetString(reader.GetOrdinal("ItemName")),
 
                         };
                     }
@@ -150,15 +150,16 @@ namespace Final_Capstone_Venue_Site.Repositories
                     cmd.CommandText = @"
                             UPDATE Merch
                             SET 
-                                [ItemName] = @itemname
-                                [Picture] = @picture
-                                [Description] = @description
-                                [Price] = @price
+                                [ItemName] = @itemname,
+                                [Picture] = @picture,
+                                [Description] = @description,
+                                [Price] = @price,
                                 [Quantity] = @quantity
                             WHERE Id = @id";
 
-                    DbUtils.AddParameter(cmd, "@itemname", merch.ItemName);
+
                     DbUtils.AddParameter(cmd, "@id", merch.Id);
+                    DbUtils.AddParameter(cmd, "@itemname", merch.ItemName);
                     DbUtils.AddParameter(cmd, "@picture", merch.Picture);
                     DbUtils.AddParameter(cmd, "@description", merch.Description);
                     DbUtils.AddParameter(cmd, "@price", merch.Price);

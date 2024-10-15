@@ -1,34 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { NavBar } from "../Nav/NavBar.jsx";
-import { Outlet, Route, Routes } from "react-router-dom";
-import HomePage from "../HomePage.jsx";
-
+import { useEffect, useState } from "react";
+import { AdminViews } from "./AdminView";
 
 export const ApplicationViews = () => {
-  // const [currentUser, setCurrentUser] = useState({});
 
-  // useEffect(() => {
-  //   const localVenueUser = localStorage.getItem("venue_user");
-  //   const venueUserObject = JSON.parse(localVenueUser);
+  const [currentUser, setCurrentUser] = useState({});
 
-  //   setCurrentUser(venueUserObject);
-  // }, []);
-
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-            <NavBar />
-            <Outlet />
-          </>
-        }
-      >
-        <Route index path="/" element={<HomePage />}/>
-        <Route path="/Merch">
-        </Route>
-      </Route>
-    </Routes>
-  );
-};
+  
+  useEffect(() => {
+    const localUser = localStorage.getItem("venue_user");
+    const userObj = JSON.parse(localUser);
+    setCurrentUser(userObj);
+  }, []);
+  if (currentUser.isAdmin === true) {
+    return <AdminViews currentUser={currentUser} />;
+  }
+}

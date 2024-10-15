@@ -56,13 +56,13 @@ namespace Final_Capstone_Venue_Site.Controllers
 
 
 
-        //GET BY DISPLAY NAME
-        [HttpGet("GetUserByDisplayName")]
-        public IActionResult GetByDisplayName(string displayName)
+        //GET BY EMAIL
+        [HttpGet("GetUserByEmail={email}")]
+        public IActionResult GetUserByEmail(string email)
         {
-            var user = _usersRepository.GetUserByDisplayName(displayName);
+            var user = _usersRepository.GetUserByEmail(email);
 
-            if (displayName == null || user == null)
+            if (email == null || user == null)
             {
                 return NotFound();
             }

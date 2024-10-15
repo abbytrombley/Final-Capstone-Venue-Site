@@ -3,7 +3,7 @@ const apiUrl = "https://localhost:5173/api/UserProfile";
 //Fetch to login an existing user
 
 export const loginUser = (email) => {
-  return fetch(`${apiUrl}/getbyemail?email=${email}`).then((res) => res.json());
+  return fetch(`https://localhost:7229/api/Users/GetUserByEmail=${email}`).then((res) => res.json());
 };
 
 export const logout = () => {

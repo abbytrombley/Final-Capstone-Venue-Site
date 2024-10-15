@@ -9,6 +9,7 @@ namespace Final_Capstone_Venue_Site.Repositories
         Merch GetById(int merchId);
         void Add(Merch merch);
         void Delete(int merchId);
+        void Update(Merch merch);
     
 
     }

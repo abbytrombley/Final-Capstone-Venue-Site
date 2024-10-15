@@ -1,9 +1,9 @@
 export const getAllMerch = () => {
-    return fetch(`http://localhost:5173/merch`).then((res) => res.json())
+    return fetch(`https://localhost:7229/api/Merch`).then((res) => res.json())
 }
 
 export const createMerch = (merch) => {
-    return fetch(`http://localhost:5173/merch`, {
+    return fetch(`https://localhost:7229/api/Merch`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -13,17 +13,17 @@ export const createMerch = (merch) => {
 }
 
 export const deleteMerch = (merchId) => {
-    return fetch(`http://localhost:5173/merch/${merchId}`, { method: "DELETE" });
+    return fetch(`https://localhost:7229/api/Merch/${merchId}`, { method: "DELETE" });
   };
 
   export const getMerchById = (merch) => {
     return fetch(
-        `http://localhost:5173/merch/${merch}?_expand=user`
+        `https://localhost:7229/api/Merch/${merch}?_expand=user`
       ).then((res) => res.json());
   }
 
   export const updateMerch = (merch) => {
-    return fetch(`http://localhost:5173/merch/${merch.id}`, {
+    return fetch(`https://localhost:7229/api/Merch/${merch.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
