@@ -25,7 +25,7 @@ export const NewMerch = () => {
         price: newMerch.price,
         quantity: newMerch.quantity,
         picture: newMerch.picture,
-        // userId: currentUser.id
+        userId: currentUser.id
     }
     createMerch(merch).then(() => {
         navigate("/merch")

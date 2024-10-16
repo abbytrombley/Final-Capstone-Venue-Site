@@ -70,7 +70,7 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                            SELECT ArtistName
+                            SELECT Id, ArtistName, SupportingArtist, Picture, Price, Date
                             FROM Events
                            WHERE Id = @Id";
 
@@ -83,9 +83,13 @@ namespace Final_Capstone_Venue_Site.Repositories
                     {
                         events = new Event()
                         {
-                            Id = id,
 
+                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                            Picture = reader.GetString(reader.GetOrdinal("Picture")),
                             ArtistName = reader.GetString(reader.GetOrdinal("ArtistName")),
+                            SupportingArtist = reader.GetString(reader.GetOrdinal("SupportingArtist")),
+                            Price = reader.GetDouble(reader.GetOrdinal("Price")),
+                            Date = reader.GetDateTime(reader.GetOrdinal("Date"))
 
                         };
                     }
@@ -145,16 +149,16 @@ namespace Final_Capstone_Venue_Site.Repositories
                     cmd.CommandText = @"
                                 UPDATE Events
                                 SET
-                                     [ArtistName] = @artistName
-                                     [Picture] = @picture
-                                     [SupportingArtist] = @supportingartist
-                                     [Price] = @price
+                                     [ArtistName] = @artistName,
+                                     [Picture] = @picture,
+                                     [SupportingArtist] = @supportingartist,
+                                     [Price] = @price,
                                      [Date] = @date
 
                                 WHERE Id = @id";
 
-                    DbUtils.AddParameter(cmd, "@artistName", events.ArtistName);
                     DbUtils.AddParameter(cmd, "@id", events.Id);
+                    DbUtils.AddParameter(cmd, "@artistName", events.ArtistName);
                     DbUtils.AddParameter(cmd, "@picture", events.Picture);
                     DbUtils.AddParameter(cmd, "@supportingartist", events.SupportingArtist);
                     DbUtils.AddParameter(cmd, "@price", events.Price);

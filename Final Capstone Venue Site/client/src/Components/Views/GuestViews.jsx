@@ -1,17 +1,18 @@
-// import React, { useEffect, useState } from "react";
+//Purpose: Guest view so no crud
+
 import { NavBar } from "../Nav/NavBar.jsx";
 import { Outlet, Route, Routes } from "react-router-dom";
 import HomePage from "../HomePage/HomePage.jsx";
-import { Merch } from "../Merch/Merch.jsx";
-import { NewMerch } from "../Merch/MerchCreate.jsx";
 import { FAQ } from "../FAQ/FAQ.jsx";
-import { Calendar } from "../Calendar/Events.jsx";
 import { useEffect, useState } from "react";
+import { GuestMerch } from "../Merch/GuestMerch.jsx";
+import { GuestCalendar } from "../Calendar/GuestEvents.jsx";
 
 
 
 
-export const AdminViews = () => {
+
+export const GuestViews = () => {
   const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
@@ -34,14 +35,10 @@ export const AdminViews = () => {
         >
         <Route index path="/" element={<HomePage />}/>
         <Route path="Merch">
-          <Route index element={<Merch />} />
-          <Route
-            path="merch/newMerch"
-            element={<NewMerch/>}
-          />
+          <Route index element={<GuestMerch />} />
           </Route>
         <Route path="Calendar">
-          <Route index element={<Calendar />} />
+          <Route index element={<GuestCalendar />} />
         </Route>
         <Route path="FAQ">
           <Route index element={<FAQ />} />

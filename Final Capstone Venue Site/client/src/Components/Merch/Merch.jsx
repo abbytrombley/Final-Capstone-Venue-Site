@@ -27,7 +27,7 @@ export const Merch = () => {
     // }, [merch]);
 
     useEffect(() => {
-      document.body.style.backgroundImage = `url(https://i.pinimg.com/564x/d7/f0/d5/d7f0d55e6e0ec90f0b6c09faa613703a.jpg)`
+      document.body.style.backgroundImage = `url(https://i.pinimg.com/564x/aa/44/53/aa4453ce6306d2aa24bd1eecb5a5060d.jpg)`
     } , [])
   
     const handleDelete = (merchId) => {

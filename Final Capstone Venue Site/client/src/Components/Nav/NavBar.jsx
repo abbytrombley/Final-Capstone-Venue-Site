@@ -36,7 +36,7 @@ export const NavBar = (args) => {
              }}
            />
          </i>
-        <NavbarBrand href="/">Summit Soundstage</NavbarBrand>
+        <NavbarBrand  className="Title" href="/">Summit Soundstage</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
@@ -48,17 +48,21 @@ export const NavBar = (args) => {
                 Merch
               </NavLink>
             </NavItem>
-            <UncontrolledDropdown nav inNavbar>
+            <NavItem>
+              <NavLink href="/FAQ">
+                FAQ
+              </NavLink>
+            </NavItem>
+            {/* <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 FAQ
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
+                <DropdownItem>Directions</DropdownItem>
+                <DropdownItem>FAQ</DropdownItem>
                 <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
               </DropdownMenu>
-            </UncontrolledDropdown>
+            </UncontrolledDropdown> */}
           </Nav>
           <NavbarText>
           <Link className="navbar-item" to=""

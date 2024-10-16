@@ -1,4 +1,19 @@
-.picture_size {
-    width: 20px;
-    height: 20px
+
+.carousel-container {
+    width: 100%; /* Full width */
+    overflow: hidden; /* Hide overflow */
+}
+
+.carousel-image {
+    width: 100%; /* Make images responsive */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.carousel-item {
+    height: 400px; /* Set a fixed height if desired */
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background for captions */
+    padding: 10px;
 }
