@@ -6,7 +6,11 @@ import HomePage from "../HomePage/HomePage.jsx";
 import { FAQ } from "../FAQ/FAQ.jsx";
 import { useEffect, useState } from "react";
 import { GuestMerch } from "../Merch/GuestMerch.jsx";
-import { GuestCalendar } from "../Calendar/GuestEvents.jsx";
+import { GuestCalendar } from "../Events/GuestEvents.jsx";
+import Checkout from "../Checkout/Checkout.jsx";
+import { SplashPage } from "../SplashPage/SplashPage.jsx";
+
+
 
 
 
@@ -14,6 +18,7 @@ import { GuestCalendar } from "../Calendar/GuestEvents.jsx";
 
 export const GuestViews = () => {
   const [currentUser, setCurrentUser] = useState({});
+  const [cart, setCart] = useState([])
 
   useEffect(() => {
     const localVenueUser = localStorage.getItem("venue_user");
@@ -34,14 +39,18 @@ export const GuestViews = () => {
         }
         >
         <Route index path="/" element={<HomePage />}/>
+        <Route index path="/SplashPage" element={<SplashPage />}/>
         <Route path="Merch">
-          <Route index element={<GuestMerch />} />
+          <Route index element={<GuestMerch cart={cart} setCart={setCart} />} />
           </Route>
-        <Route path="Calendar">
-          <Route index element={<GuestCalendar />} />
+        <Route path="event">
+          <Route index element={<GuestCalendar cart={cart} setCart={setCart} />} />
         </Route>
         <Route path="FAQ">
           <Route index element={<FAQ />} />
+        </Route>
+        <Route path="Checkout">
+          <Route index element={<Checkout cart={cart} setCart={setCart} />} />
         </Route>
       </Route>
     </Routes>

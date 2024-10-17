@@ -57,7 +57,7 @@ export const Merch = () => {
                       <h2>{merch.itemName}</h2>
                       <img src={merch.picture} />
                       <p>{merch.price}</p>
-                      <p>{merch.quantity}</p>
+                      {/* <p>{merch.quantity}</p> */}
                       <p>{merch.description}</p>
                      
                       {/* <img className="merch-images" src={merch.imageURL} alt={merch.itemName}/> */}

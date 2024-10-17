@@ -119,7 +119,6 @@ namespace Final_Capstone_Venue_Site.Repositories
              ";
 
                     DbUtils.AddParameter(cmd, "@artistName", events.ArtistName);
-                    DbUtils.AddParameter(cmd, "@id", events.Id);
                     DbUtils.AddParameter(cmd, "@picture", events.Picture);
                     DbUtils.AddParameter(cmd, "@supportingartist", events.SupportingArtist);
                     DbUtils.AddParameter(cmd, "@price", events.Price);
@@ -131,6 +130,10 @@ namespace Final_Capstone_Venue_Site.Repositories
                 }
             }
         }
+
+
+
+
 
 
 
@@ -200,5 +203,3 @@ namespace Final_Capstone_Venue_Site.Repositories
 
 
 
-
-//fill out objects for methods

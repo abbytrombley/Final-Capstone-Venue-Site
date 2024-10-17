@@ -6,6 +6,7 @@ import { Authorize } from "../Components/Auth/Authorized.jsx";
 
 
 
+
 export const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -18,6 +19,7 @@ export const App = () => {
 
   return (
 
+
     <BrowserRouter>
       {isLoggedIn ? (<ApplicationViews isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />):(<Authorize setIsLoggedIn={setIsLoggedIn} />)}
     </BrowserRouter>
@@ -27,14 +29,3 @@ export const App = () => {
 export default App;
 
 
-
-
-    // <Routes>
-
-    //   <Route
-    //     path="*"
-    //     element={
-    //         <ApplicationViews />
-    //     }
-    //   />
-    // </Routes>

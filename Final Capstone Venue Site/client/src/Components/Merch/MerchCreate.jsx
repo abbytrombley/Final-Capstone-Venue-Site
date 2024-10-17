@@ -10,7 +10,7 @@ export const NewMerch = () => {
     itemName: "",
     description: "",
     price: "",
-    quantity: "",
+    // quantity: "",
     picture: ""
   });
 
@@ -23,9 +23,8 @@ export const NewMerch = () => {
         itemName: newMerch.itemName,
         description: newMerch.description,
         price: newMerch.price,
-        quantity: newMerch.quantity,
+        // quantity: newMerch.quantity,
         picture: newMerch.picture,
-        userId: currentUser.id
     }
     createMerch(merch).then(() => {
         navigate("/merch")
@@ -44,7 +43,7 @@ export const NewMerch = () => {
             placeholder="Item Name"
             onChange={(merch) => {
               const merchCopy = { ...newMerch };
-              merchCopy.merchItemName = merch.target.value;
+              merchCopy.itemName = merch.target.value;
               setNewMerch(merchCopy);
             }}
           ></input>
@@ -56,23 +55,23 @@ export const NewMerch = () => {
             placeholder="Description"
             onChange={(event) => {
               const merchCopy = { ...newMerch };
-              merchCopy.merchDescription = event.target.value;
+              merchCopy.description = event.target.value;
               setNewMerch(merchCopy);
             }}
           ></input>
         </fieldset>
-        <fieldset>
+        {/* <fieldset>
           <input
             text="text"
             className="form-control"
             placeholder="Quantity"
             onChange={(event) => {
               const merchCopy = { ...newMerch };
-              merchCopy.merchQuantity = event.target.value;
+              merchCopy.quantity = event.target.value;
               setNewMerch(merchCopy);
             }}
           ></input>
-        </fieldset>
+        </fieldset> */}
         <fieldset>
           <input
             text="text"
@@ -80,7 +79,7 @@ export const NewMerch = () => {
             placeholder="Price"
             onChange={(event) => {
               const merchCopy = { ...newMerch };
-              merchCopy.merchPrice = event.target.value;
+              merchCopy.price = event.target.value;
               setNewMerch(merchCopy);
             }}
           ></input>

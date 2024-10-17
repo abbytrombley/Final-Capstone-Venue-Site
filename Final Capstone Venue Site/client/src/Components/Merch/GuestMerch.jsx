@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, Col, Row } from "reactstrap";
+import { Button, Card, Col, Row } from "reactstrap";
 import { getAllMerch } from "../../Services/MerchService";
 import "./Merch.css";
 
-export const GuestMerch = () => {
+export const GuestMerch = ({cart, setCart}) => {
   const [merch, setMerch] = useState([]);
 
   useEffect(() => {
@@ -17,6 +17,16 @@ export const GuestMerch = () => {
     document.body.style.backgroundImage = `url(https://i.pinimg.com/564x/aa/44/53/aa4453ce6306d2aa24bd1eecb5a5060d.jpg`;
   }, []);
 
+  const AddToCart = (item) => {
+    const cartCopy = [ ...cart ];
+    cartCopy.push({merchId : item.id, picture : item.picture, itemName : item.itemName, price : item.price, eventId : null})
+    setCart(cartCopy);
+  }
+   
+
+
+
+
   return (
     <div className="merch-test">
       <div className="merch">
@@ -28,21 +38,29 @@ export const GuestMerch = () => {
                 <h2>{item.itemName}</h2>
                 <img src={item.picture} alt={item.itemName} />
                 <p>Price: ${item.price}</p>
-                <p>Quantity: {item.quantity}</p>
+                {/* <p>Quantity: {item.quantity}</p> */}
                 <p>{item.description}</p>
+                <div>
+                  <Link >
+                    <Button onClick={()=>AddToCart(item)} color="primary" size="sm" style={{ margin: 5 }}>
+                      Add to Cart
+                    </Button>
+                  </Link>
+                </div>
               </Card>
             </Col>
           ))}
         </Row>
       </div>
       <div>
-        <Link to="/merch">
-          <button className="button">Back to Merch List</button>
+        <Link to="/Checkout">
+          <button className="button">Go to Cart</button>
         </Link>
       </div>
     </div>
   );
 };
+
 
 
 

@@ -22,7 +22,7 @@ export const Login = ({setIsLoggedIn}) => {
         }
         localStorage.setItem("venue_user", JSON.stringify(userProfile))
         setIsLoggedIn(true)
-        navigate("/")
+        navigate("/SplashPage")
       }
       else{
         alert("Invalid email or password")

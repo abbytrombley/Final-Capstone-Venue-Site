@@ -41,28 +41,23 @@ export const NavBar = (args) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
-              <NavLink href="/calendar/">Calendar</NavLink>
+              <Link style={{ color: 'black' }} to="/event">Calendar</Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/merch">
+              <Link style={{ color: 'black' }} to="/merch">
                 Merch
-              </NavLink>
+              </Link>
             </NavItem>
             <NavItem>
-              <NavLink href="/FAQ">
+              <Link style={{ color: 'black' }} to="/FAQ">
                 FAQ
-              </NavLink>
+              </Link>
             </NavItem>
-            {/* <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                FAQ
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Directions</DropdownItem>
-                <DropdownItem>FAQ</DropdownItem>
-                <DropdownItem divider />
-              </DropdownMenu>
-            </UncontrolledDropdown> */}
+            <NavItem>
+              <Link style={{ color: 'black' }} to="/Checkout">
+                Checkout
+              </Link>
+            </NavItem>
           </Nav>
           <NavbarText>
           <Link className="navbar-item" to=""

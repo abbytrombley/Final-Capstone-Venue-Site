@@ -2,11 +2,11 @@
 
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Card, CardBody, CardSubtitle, Col, Row } from "reactstrap";
+import { Card, CardBody, CardSubtitle, Col, Row, Button } from "reactstrap";
 import { getAllEvents } from "../../Services/EventsService";
 import "./Events.css";
 
-export const GuestCalendar = () => {
+export const GuestCalendar = ({cart, setCart}) => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -33,6 +33,18 @@ export const GuestCalendar = () => {
   if (loading) return <div>Loading events...</div>;
   if (error) return <div>{error}</div>;
 
+
+
+
+
+
+  const AddToCart = (item) => {
+    const cartCopy = [ ...cart ];
+    cartCopy.push({eventId : item.id, picture : item.picture, artistName : item.artistName, price : item.price, merchId : null})
+    setCart(cartCopy);
+  }
+   
+
   return (
     <div className="events-test">
       <h2 className="title_events">Upcoming Events</h2>
@@ -52,13 +64,20 @@ export const GuestCalendar = () => {
                   <p>Price: ${event.price}</p>
                   <p>Date: {new Date(event.date).toLocaleDateString()}</p>
                 </div>
+                <div>
+                  <Link >
+                    <Button onClick={()=>AddToCart(event)} color="primary" size="sm" style={{ margin: 5 }}>
+                      Add to Cart
+                    </Button>
+                  </Link>
+                </div>
               </CardBody>
             </Card>
           </Col>
         ))}
       </Row>
-      <Link to="/events">
-        <button className="button">Back to Events List</button>
+      <Link to="/Checkout">
+        <button className="button">Go to Cart</button>
       </Link>
     </div>
   );

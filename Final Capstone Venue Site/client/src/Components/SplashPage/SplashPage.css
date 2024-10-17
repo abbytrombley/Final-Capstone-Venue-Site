@@ -1,0 +1,29 @@
+.splash-container {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    background-color: #282c34; /* Change to your preferred background color */
+    color: white; /* Text color */
+    text-align: center; /* Center-align text */
+}
+
+.splash-content {
+    /* Add any additional styling for the content here */
+}
+
+.enter-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff; /* Change to your preferred button color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.enter-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}

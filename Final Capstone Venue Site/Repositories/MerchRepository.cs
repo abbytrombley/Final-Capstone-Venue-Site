@@ -69,7 +69,7 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                            SELECT ItemName
+                            SELECT ItemName, Description, Price, Quantity, Picture
                             FROM Merch
                            WHERE Id = @Id";
 
@@ -84,7 +84,12 @@ namespace Final_Capstone_Venue_Site.Repositories
                         {
                             Id = id,
 
+                            Picture = reader.GetString(reader.GetOrdinal("Picture")),
                             ItemName = reader.GetString(reader.GetOrdinal("ItemName")),
+                            Description = reader.GetString(reader.GetOrdinal("Description")),
+                            Price = reader.GetDouble(reader.GetOrdinal("Price")),
+                            Quantity = reader.GetInt32(reader.GetOrdinal("Quantity"))
+
 
                         };
                     }
@@ -113,7 +118,7 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Users (Picture, ItemName, Description, Price, Quantity)
+                        INSERT INTO Merch (Picture, ItemName, Description, Price, Quantity)
                         OUTPUT INSERTED.ID
                         VALUES (@Picture, @ItemName, @Description, @Price, @Quantity)
                                        ";
@@ -122,7 +127,6 @@ namespace Final_Capstone_Venue_Site.Repositories
                     DbUtils.AddParameter(cmd, "@Description", merch.Description);
                     DbUtils.AddParameter(cmd, "@Price", merch.Price);
                     DbUtils.AddParameter(cmd, "@Quantity", merch.Quantity);
-                    DbUtils.AddParameter(cmd, "@Id", merch.Id);
 
                     merch.Id = (int)cmd.ExecuteScalar();
 

@@ -6,7 +6,7 @@ import { Button, Card, CardBody, CardSubtitle, Col, Row } from "reactstrap";
 import { deleteEvent, getAllEvents } from "../../Services/EventsService";
 import "./Events.css";
 
-export const Calendar = () => {
+export const Events = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,6 +41,40 @@ export const Calendar = () => {
 
   if (loading) return <div>Loading events...</div>;
   if (error) return <div>{error}</div>;
+
+
+
+
+
+
+
+
+
+  const Events = ({ events }) => {
+    const [cartItems, setCartItems] = useState([]);
+    const history = useHistory();
+  };
+  
+    const addToCart = (event) => {
+      setCartItems([...cartItems, event]);
+      alert(`${event.name} added to cart!`); // Notify user
+    };
+  
+    const handleCheckout = () => {
+      // Store cart items in local storage or pass them to checkout via context
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      history.push('/checkout'); // Redirect to checkout page
+    };
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="events-test">

@@ -1,19 +1,17 @@
-
 .carousel-container {
-    width: 100%; /* Full width */
+    position: relative; /* Position relative for absolute positioning of images */
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
     overflow: hidden; /* Hide overflow */
-}
+  }
 
-.carousel-image {
-    width: 100%; /* Make images responsive */
-    height: auto; /* Maintain aspect ratio */
-}
-
-.carousel-item {
-    height: 400px; /* Set a fixed height if desired */
-}
-
-.carousel-caption {
-    background: rgba(0, 0, 0, 0.5); /* Optional: semi-transparent background for captions */
-    padding: 10px;
-}
+  .carousel-item {
+    height: 100%; /* Full height */
+    width: 100%; /* Full width */
+  }
+  
+  .carousel-image {
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    object-fit: cover; /* Cover the area without distortion */
+  }

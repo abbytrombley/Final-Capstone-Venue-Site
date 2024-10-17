@@ -1,50 +1,50 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "reactstrap";
-import { getMerchById, updateMerch } from "../../Services/MerchService";
-import "./Merch.css";
+import { getEventById, updateEvent } from "../../Services/EventsService";
+import "./Events.css";
 
-export const EditMerch = () => {
-  const [merch, setMerch] = useState({});
+export const EditEvents = () => {
+  const [events, setEvents] = useState({});
   const { id } = useParams();
 
   useEffect(() => {
-    getMerchById(id).then((data) => {
+    getEventById(id).then((data) => {
       const merchObj = data;
-      setMerch(merchObj);
+      setEvents(merchObj);
     });
   }, [id]);
 
   const handleSave = (event) => {
     event.preventDefault();
-    const editedMerch = {
-      id: merch.id,
-      itemName: merch.itemName,
-      description: merch.description,
-      price: merch.price,
-    //   quantity: merch.quantity,
-      picture: merch.picture,
+    const editedEvents = {
+      id: events.id,
+      artistName: events.artistName,
+      supportingArtist: events.supportingArtist,
+      price: events.price,
+      date: events.date,
+      picture: events.picture,
       
     };
-    updateMerch(editedMerch).then(() => {
-      navigate("/merch");
+    updateEvent(editedEvents).then(() => {
+      navigate("/event");
     });
   };
   const navigate = useNavigate();
   return (
     <div className="form">
       <form>
-        <h2 className="edit__merch">Edit Item</h2>
+        <h2 className="edit__event">Edit Event</h2>
         <fieldset>
           <div className="form-title">
             <input
               text="text"
               className="form-control"
-              placeholder={merch.itemName}
+              placeholder={events.artistName}
               onChange={(event) => {
-                const merchCopy = { ...merch };
-                merchCopy.itemName = event.target.value;
-                setMerch(merchCopy);
+                const eventsCopy = { ...events };
+                eventsCopy.artistName = event.target.value;
+                setEvents(eventsCopy);
               }}
             ></input>
           </div>
@@ -54,11 +54,11 @@ export const EditMerch = () => {
             <input
               text="text"
               className="form-control"
-              placeholder={merch.description}
+              placeholder={events.supportingArtist}
               onChange={(event) => {
-                const merchCopy = { ...merch };
-                merchCopy.description = event.target.value;
-                setMerch(merchCopy);
+                const eventsCopy = { ...events };
+                eventsCopy.supportingArtist = event.target.value;
+                setEvents(eventsCopy);
               }}
             ></input>
           </div>
@@ -68,39 +68,39 @@ export const EditMerch = () => {
             <input
               text="text"
               className="form-control"
-              placeholder={merch.price}
+              placeholder={events.price}
               onChange={(event) => {
-                const merchCopy = { ...merch };
-                merchCopy.price = event.target.value;
-                setMerch(merchCopy);
+                const eventsCopy = { ...events };
+                eventsCopy.price = event.target.value;
+                setEvents(eventsCopy);
               }}
             ></input>
           </div>
         </fieldset>
-        {/* <fieldset>
-          <div className="form-title">
-            <input
-              text="text"
-              className="form-control"
-              placeholder={merch.quantity}
-              onChange={(event) => {
-                const merchCopy = { ...merch };
-                merchCopy.quantity = event.target.value;
-                setMerch(merchCopy);
-              }}
-            ></input>
-          </div>
-        </fieldset> */}
         <fieldset>
           <div className="form-title">
             <input
               text="text"
               className="form-control"
-              placeholder={merch.picture}
+              placeholder={events.date}
               onChange={(event) => {
-                const merchCopy = { ...merch };
-                merchCopy.picture = event.target.value;
-                setMerch(merchCopy);
+                const eventsCopy = { ...events };
+                eventsCopy.date = event.target.value;
+                setEvents(eventsCopy);
+              }}
+            ></input>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-title">
+            <input
+              text="text"
+              className="form-control"
+              placeholder={events.picture}
+              onChange={(event) => {
+                const eventsCopy = { ...events };
+                eventsCopy.picture = event.target.value;
+                setEvents(eventsCopy);
               }}
             ></input>
           </div>
@@ -108,7 +108,7 @@ export const EditMerch = () => {
         
         <fieldset className="form-group">
           <Button onClick={handleSave}>
-            Save Item
+            Save Event
           </Button>
         </fieldset>
       </form>
