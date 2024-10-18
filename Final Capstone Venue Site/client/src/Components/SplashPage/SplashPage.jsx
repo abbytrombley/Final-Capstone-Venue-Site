@@ -1,5 +1,6 @@
 // src/SplashPage.jsx
 
+
 import React from 'react';
 import './SplashPage.css';
 
@@ -7,6 +8,9 @@ export const SplashPage = () => {
     const handleEnterClick = () => {
         window.location.href = '/'; // Change '/homepage' to your actual homepage route
     };
+
+
+   
 
     return (
         <div className="splash-container">
@@ -22,16 +26,10 @@ export const SplashPage = () => {
 
 
 
-
-
-
-
-
-
-
-
-
-
+// export const SplashPage = () => {
+//     const handleEnterClick = () => {
+//         window.location.href = '/'; // Change '/homepage' to your actual homepage route
+//     };
 
 
 

@@ -84,7 +84,7 @@ export const NavBar = (args) => {
 
 
 
-//OLD NAVBAR
+// // OLD NAVBAR
 // import "./NavBar.css"
 // import { Link } from "react-router-dom";
 
@@ -142,85 +142,3 @@ export const NavBar = (args) => {
 
 
 
-
-
-
-//MY FRONT END CAPSTONE
-// import React, { useState } from 'react';
-// import { Link, useNavigate } from 'react-router-dom';
-// import "./NavBar.css"
-// import {
-//   Collapse,
-//   Navbar,
-//   NavbarToggler,
-//   Nav,
-//   UncontrolledDropdown,
-//   DropdownMenu,
-//   DropdownItem,
-// } from 'reactstrap';
-
-
-// export const NavBar = () => {
-
-
-//   const navigate =useNavigate()
-
-//   return (
-//   <header>
-//   <ul className="navbar">
-//   <i>
-//          <img
-//              alt="logo"
-//              src="src/assets/NavBarLogo.png"
-//              style={{
-//                height: 100,
-//                width: 100,
-//                paddingRight: 5,
-//              }}
-//            />
-//       </i>
-//     <li className="navbar-item">
-//       <Link to="/" className="navbar-item">
-//         Home
-//       </Link>
-//     </li>
-    
-//     <li className="navbar-item">
-//       <Link to="post" className="navbar-item">
-//         Calendar
-//       </Link>
-//     </li>
-    
-//     <li className="navbar-item">
-//       <Link to="albums" className="navbar-item">
-//         Merch
-//       </Link>
-//     </li>
-    
-
-//     <li className="navbar-item">
-//       <Link to="images" className="navbar-item">
-//         FAQ
-//       </Link>
-//     </li>
-
-//     <li className="navbar-item">
-//       <Link to="calendarApp" className="navbar-item">
-//         Checkout
-//       </Link>
-//     </li>
-    
-//     <li className="navbar-item">
-//       <Link className="navbar-item" to=""
-//       onClick={() => {
-//         localStorage.removeItem("music_user")
-//         navigate("/login", {replace: true})
-//       }}
-//       >
-//         Logout
-//       </Link>
-//     </li>
-//   </ul>
-//   </header>
-// );
-// }

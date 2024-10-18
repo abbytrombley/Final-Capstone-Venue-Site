@@ -8,14 +8,14 @@ export const GuestMerch = ({cart, setCart}) => {
   const [merch, setMerch] = useState([]);
 
   useEffect(() => {
+
+    document.body.style.backgroundImage = `url(https://i.pinimg.com/474x/2d/76/47/2d76478455feeda973eb295263b2d0dc.jpg)`
+
     getAllMerch().then((merchArray) => {
       setMerch(merchArray);
     });
   }, []);
 
-  useEffect(() => {
-    document.body.style.backgroundImage = `url(https://i.pinimg.com/564x/aa/44/53/aa4453ce6306d2aa24bd1eecb5a5060d.jpg`;
-  }, []);
 
   const AddToCart = (item) => {
     const cartCopy = [ ...cart ];
@@ -23,6 +23,15 @@ export const GuestMerch = ({cart, setCart}) => {
     setCart(cartCopy);
   }
    
+  const handleMerch = () => {
+    // Logic for completing the purchase goes here
+    alert('Added to Cart!');
+    localStorage.removeItem('cartItems'); // Clear cart after purchase
+  };
+
+  const addedToCart = (item) => {
+    alert("Woohoo! You have added merch to your cart!"); // Show pop-up
+  };
 
 
 
@@ -37,12 +46,12 @@ export const GuestMerch = ({cart, setCart}) => {
               <Card style={{ width: "12rem", padding: "1em", margin: 5 }}>
                 <h2>{item.itemName}</h2>
                 <img src={item.picture} alt={item.itemName} />
-                <p>Price: ${item.price}</p>
+                <p>Price: {item.price}</p>
                 {/* <p>Quantity: {item.quantity}</p> */}
                 <p>{item.description}</p>
                 <div>
                   <Link >
-                    <Button onClick={()=>AddToCart(item)} color="primary" size="sm" style={{ margin: 5 }}>
+                    <Button onClick={()=>{AddToCart(item); addedToCart() }}  color="primary" size="med" style={{ margin: 5 }}>
                       Add to Cart
                     </Button>
                   </Link>

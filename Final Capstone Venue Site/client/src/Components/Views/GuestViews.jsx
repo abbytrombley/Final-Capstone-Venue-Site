@@ -1,16 +1,16 @@
 //Purpose: Guest view so no crud
 
-import { NavBar } from "../Nav/NavBar.jsx";
+
 import { Outlet, Route, Routes } from "react-router-dom";
-import HomePage from "../HomePage/HomePage.jsx";
+import { HomePage } from "../HomePage/HomePage.jsx";
 import { FAQ } from "../FAQ/FAQ.jsx";
 import { useEffect, useState } from "react";
 import { GuestMerch } from "../Merch/GuestMerch.jsx";
 import { GuestCalendar } from "../Events/GuestEvents.jsx";
-import Checkout from "../Checkout/Checkout.jsx";
-import { SplashPage } from "../SplashPage/SplashPage.jsx";
+import { Checkout } from "../Checkout/Checkout.jsx";
+import { NavBar } from "../Nav/NavBar.jsx";
 
-
+// import { SplashPage } from "../SplashPage/SplashPage.jsx";
 
 
 
@@ -35,11 +35,15 @@ export const GuestViews = () => {
           <>
             <NavBar />
             <Outlet />
+            
           </>
         }
         >
-        <Route index path="/" element={<HomePage />}/>
-        <Route index path="/SplashPage" element={<SplashPage />}/>
+        
+        <Route index path="/" element={<HomePage cart={cart} setCart={setCart} />}/>
+        
+
+        {/* <Route index path="/SplashPage" element={<SplashPage />}/> */}
         <Route path="Merch">
           <Route index element={<GuestMerch cart={cart} setCart={setCart} />} />
           </Route>
@@ -49,9 +53,9 @@ export const GuestViews = () => {
         <Route path="FAQ">
           <Route index element={<FAQ />} />
         </Route>
-        <Route path="Checkout">
-          <Route index element={<Checkout cart={cart} setCart={setCart} />} />
-        </Route>
+        
+        <Route path="Checkout" index element={<Checkout cart={cart} setCart={setCart} />} />
+      
       </Route>
     </Routes>
   );

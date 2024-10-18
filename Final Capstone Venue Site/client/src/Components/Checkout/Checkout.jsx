@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Button } from 'reactstrap';
 
-const Checkout = ({cart, setCart}) => {
+export const Checkout = ({cart, setCart}) => {
   const [cartItems, setCartItems] = useState([]);
   const [total, setTotal] = useState(0)
  
@@ -34,26 +35,26 @@ const CreateTotal = (price) => {
             CreateTotal(item.price)
             if(item.eventId === null){
             return(
-          <li key={index}>
+          <div key={index}>
             <h3>{item.itemName}</h3>
             <p>Price: ${item.price}</p>
-            <img src={item.picture} alt={item.itemName} />
-          </li>
+            <img src={item.picture} alt={item.itemName} style={{ width: '200px', height: 'auto' }} />
+          </div>
         )}
             else if(item.merchId === null){
                 return (
-                <li key={index}>
+                <div key={index}>
                 <h3>{item.itemName}</h3>
                 <p>Price: ${item.price}</p>
-                <img src={item.picture} alt={item.itemName} />
-              </li>
+                <img src={item.picture} alt={item.itemName} style={{ width: '200px', height: 'auto' }} />
+              </div>
         )}
         })}
       </ul>
       <h3>Total: ${Price}</h3>
-      <button onClick={handlePurchase}>Complete Purchase</button>
+      <Button color="primary" onClick={handlePurchase}>Complete Purchase</Button>
     </div>
   );
 };
 
-export default Checkout;
+

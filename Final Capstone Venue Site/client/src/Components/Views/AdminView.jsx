@@ -10,8 +10,10 @@ import { EditMerch } from "../Merch/MerchEdit.jsx";
 import { NewEvents } from "../Events/EventsCreate.jsx";
 import { EditEvents } from "../Events/EventsEdit.jsx";
 import { Events } from "../Events/Events.jsx";
-import { SplashPage } from "../SplashPage/SplashPage.jsx";
-import HomePage from "../HomePage/HomePage.jsx";
+// import { SplashPage } from "../SplashPage/SplashPage.jsx";
+
+import { Checkout } from "../Checkout/Checkout.jsx";
+import { HomePage } from "../HomePage/HomePage.jsx";
 
 
 
@@ -39,7 +41,7 @@ export const AdminViews = () => {
         }
         >
         <Route index path="/" element={<HomePage />}/>
-        <Route index path="/SplashPage" element={<SplashPage />}/>
+        {/* <Route index path="/SplashPage" element={<SplashPage />}/> */}
         <Route path="Merch">
           <Route index element={<Merch />} />
           <Route
@@ -65,9 +67,9 @@ export const AdminViews = () => {
         <Route path="FAQ">
           <Route index element={<FAQ />} />
         </Route>
-        {/* <Route path="Checkout">
+        <Route path="Checkout">
           <Route index element={<Checkout />} />
-        </Route> */}
+        </Route>
       </Route>
     </Routes>
   );

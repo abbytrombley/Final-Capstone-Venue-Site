@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Merch.css";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input } from "reactstrap";
@@ -31,6 +31,14 @@ export const NewMerch = () => {
     })
 
   }
+
+  useEffect(() => {
+    document.body.style.backgroundImage = `url(https://i.pinimg.com/474x/2d/76/47/2d76478455feeda973eb295263b2d0dc.jpg)`
+  } , [])
+
+
+
+
 
   return (
     <div className="form">

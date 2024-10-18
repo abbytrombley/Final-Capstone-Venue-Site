@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Events.css";
 import { useNavigate } from "react-router-dom";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import { createEvent } from "../../Services/EventsService";
+
 
 export const NewEvents = () => {
     
@@ -32,6 +33,14 @@ export const NewEvents = () => {
 
   }
 
+
+  useEffect(() => {
+    document.body.style.backgroundImage = `url(https://i.pinimg.com/474x/2d/76/47/2d76478455feeda973eb295263b2d0dc.jpg)`
+  } , [])
+
+
+
+
   return (
     <div className="form">
       <form className="event-form">
@@ -52,7 +61,7 @@ export const NewEvents = () => {
           <input
             text="text"
             className="form-control"
-            placeholder="Description"
+            placeholder="Supporting Artist"
             onChange={(event) => {
               const eventsCopy = { ...newEvent };
               eventsCopy.supportingArtist = event.target.value;

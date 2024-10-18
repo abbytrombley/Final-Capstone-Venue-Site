@@ -12,6 +12,7 @@ export const Events = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    document.body.style.backgroundImage = `url(https://i.pinimg.com/474x/2d/76/47/2d76478455feeda973eb295263b2d0dc.jpg)`
     const fetchEvents = async () => {
       try {
         const eventsArray = await getAllEvents();
@@ -30,6 +31,10 @@ export const Events = () => {
     fetchEvents();
   }, []);
 
+
+
+
+
   const handleDelete = async (eventId) => {
     try {
       await deleteEvent(eventId);
@@ -41,9 +46,6 @@ export const Events = () => {
 
   if (loading) return <div>Loading events...</div>;
   if (error) return <div>{error}</div>;
-
-
-
 
 
 
@@ -65,6 +67,7 @@ export const Events = () => {
       localStorage.setItem('cartItems', JSON.stringify(cartItems));
       history.push('/checkout'); // Redirect to checkout page
     };
+
 
 
 
@@ -119,6 +122,7 @@ export const Events = () => {
     </div>
   );
 };
+
 
 
 

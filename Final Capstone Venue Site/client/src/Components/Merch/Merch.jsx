@@ -26,9 +26,9 @@ export const Merch = () => {
     //   setMyMerch(foundMerch);
     // }, [merch]);
 
-    useEffect(() => {
-      document.body.style.backgroundImage = `url(https://i.pinimg.com/564x/aa/44/53/aa4453ce6306d2aa24bd1eecb5a5060d.jpg)`
-    } , [])
+    // useEffect(() => {
+    //   document.body.style.backgroundImage = `url(https://i.pinimg.com/564x/aa/44/53/aa4453ce6306d2aa24bd1eecb5a5060d.jpg)`
+    // } , [])
   
     const handleDelete = (merchId) => {
       deleteMerch(merchId).then(() => {
@@ -38,6 +38,18 @@ export const Merch = () => {
       });
     };
   
+
+
+
+
+    useEffect(() => {
+      document.body.style.backgroundImage = `url(https://i.pinimg.com/474x/2d/76/47/2d76478455feeda973eb295263b2d0dc.jpg)`
+    } , [])
+
+
+
+
+
     return (
       <div className="merch-test">
         <div className="merch">

@@ -9,6 +9,11 @@ export const EditEvents = () => {
   const { id } = useParams();
 
   useEffect(() => {
+
+    document.body.style.backgroundImage = `url(https://i.pinimg.com/474x/2d/76/47/2d76478455feeda973eb295263b2d0dc.jpg)`
+
+
+
     getEventById(id).then((data) => {
       const merchObj = data;
       setEvents(merchObj);

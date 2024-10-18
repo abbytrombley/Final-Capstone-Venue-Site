@@ -7,10 +7,11 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption,
+
 } from 'reactstrap';
 import './HomePage.css'; // Import your CSS
 import { GuestCalendar } from '../Events/GuestEvents';
+import { useEffect } from 'react';
 
 
 
@@ -20,11 +21,11 @@ const items = [
     key: 1,
   },
   {
-    src: 'https://i0.wp.com/listensd.com/wp-content/uploads/2019/10/winstons_ob_t640.jpg?fit=640%2C425&ssl=1',
+    src: 'https://whyy.org/wp-content/uploads/2024/09/4the_war_on_drugs_philly_mann_center_18092024.jpg',
     key: 2,
   },
   {
-    src: 'https://www.liveinlimbo.com/wp-content/uploads/2022/08/FranzFerdinand_20220818_3-1140x694.jpg',
+    src: 'https://americanahighways.org/wp-content/uploads/2019/10/DSCF0024.jpeg',
     key: 3,
   },
  {
@@ -36,12 +37,20 @@ const items = [
    key: 5,
 },
 {
-  src: 'https://i0.wp.com/fulltimeaesthetic.com/wp-content/uploads/2023/03/Buck-Meek-Emilio-Herce-3-1-23-web-20.jpg?resize=1024%2C683&ssl=1',
+  src: 'https://i.pinimg.com/474x/db/64/48/db64480cdb14146df821d3f6603b1ab5.jpg',
    key: 6,
+},
+{
+  src: 'https://cdn.prod.website-files.com/6590575acec6558ecc0b6176/65930ebc65c352402a423d09_sierraband.webp',
+   key: 7,
+},
+{
+  src: 'https://i.pinimg.com/564x/1b/9a/30/1b9a308a02a6cadc20998c4b60ee850e.jpg',
+   key: 8,
 }
 ];
 
-function HomePage(args) {
+export const HomePage = ({cart, setCart}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -70,13 +79,23 @@ function HomePage(args) {
         key={item.src}
       >
         <img className="carousel-image" src={item.src} alt={`Slide ${item.key}`} />
-        <CarouselCaption
-          captionText={item.caption}
-          captionHeader={item.caption}
-        />
+       
       </CarouselItem>
     );
   });
+
+
+
+
+  useEffect(() => {
+    document.body.style.backgroundImage = `url(https://i.pinimg.com/474x/2d/76/47/2d76478455feeda973eb295263b2d0dc.jpg)`
+  } , [])
+
+
+
+
+
+
 
   return (
     <div>
@@ -85,7 +104,7 @@ function HomePage(args) {
           activeIndex={activeIndex}
           next={next}
           previous={previous}
-          {...args}
+          
         >
           <CarouselIndicators
             items={items}
@@ -107,13 +126,12 @@ function HomePage(args) {
       </div>
 
       <div>
-        <GuestCalendar />
+        <GuestCalendar cart={cart} setCart={setCart} />
       </div>
     </div>
   );
 }
 
-export default HomePage;
 
 
 
