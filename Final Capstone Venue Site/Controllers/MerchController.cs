@@ -75,7 +75,7 @@ namespace Final_Capstone_Venue_Site.Controllers
             {
                 return BadRequest();
             }
-            //_merchRepository.Update(merch);
+            _merchRepository.Update(merch);
             return NoContent();
         }
 

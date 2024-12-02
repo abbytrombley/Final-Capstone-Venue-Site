@@ -1,0 +1,57 @@
+/* Purpose: Styling for Merch page */
+
+.title_events {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.flex-row {
+  justify-content: center; /* Center the cards in the row */
+}
+
+.event-card {
+  margin: 15px; /* Uniform margin for all cards */
+  text-align: center; /* Center text in cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+  transition: transform 0.2s; /* Smooth scaling on hover */
+  background-color: #ffebee;
+  margin-top: auto;
+}
+
+.event-card:hover {
+  transform: scale(1.02); /* Slightly scale up on hover */
+}
+
+.event-image {
+  width: 80%; /* Make the image responsive */
+  height: 100px; /* Fixed height for uniformity */
+  object-fit: cover; /* Cover the area without stretching */
+  border-radius: 5px; /* Rounded corners for the image */
+}
+
+.button-group {
+  display: flex;
+  justify-content: center; /* Center buttons horizontally */
+  margin-top: 10px; /* Space above buttons */
+}
+
+.button {
+  display: block; /* Center the create button */
+  margin: 20px auto; /* Center and add margin */
+  padding: 10px 20px; /* Padding for button */
+  background-color: #007bff; /* Primary button color */
+  color: white; /* Button text color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  margin-top: auto;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darken button on hover */
+}
+
+.cart-button {
+  margin-top: auto;
+  justify-content: center;
+}

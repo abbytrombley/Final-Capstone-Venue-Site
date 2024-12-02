@@ -17,8 +17,6 @@ namespace Final_Capstone_Venue_Site.Models
         [MaxLength(255)]
         public string Email { get; set; }
 
-        public string DisplayName { get; set; }
-
 
         [Required]
         public bool IsAdmin { get; set; }

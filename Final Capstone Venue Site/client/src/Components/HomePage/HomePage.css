@@ -1,0 +1,17 @@
+.carousel-container {
+    position: relative; /* Position relative for absolute positioning of images */
+    width: 80vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Hide overflow */
+  }
+
+  .carousel-item {
+    height: 100%; /* Full height */
+    width: 100%; /* Full width */
+  }
+  
+  .carousel-image {
+    width: 80%; /* Full width */
+    height: 100%; /* Full height */
+    object-fit: cover; /* Cover the area without distortion */
+  }

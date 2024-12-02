@@ -29,9 +29,8 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, Email, Password, IsAdmin, DisplayName 
-                          FROM UserProfile
-                      ORDER BY UserName ASC    
+                        SELECT Id, Email, Password, IsAdmin
+                          FROM Users  
                                        ";
                     var reader = cmd.ExecuteReader();
                     var userProfiles = new List<Users>();
@@ -44,7 +43,6 @@ namespace Final_Capstone_Venue_Site.Repositories
                             Email = DbUtils.GetString(reader, "Email"),
                             Password = DbUtils.GetString(reader, "Password"),
                             IsAdmin = DbUtils.GetBoolean(reader, "IsAdmin"),
-                            DisplayName = DbUtils.GetString(reader,"DisplayName")
                         });
                     }
                     reader.Close();
@@ -72,7 +70,7 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id AS UsersId, Email, Password, IsAdmin, DisplayName
+                        SELECT Id AS UsersId, Email, Password, IsAdmin
                           FROM Users
                          WHERE Id = @Id";
                     DbUtils.AddParameter(cmd, "@Id", id);
@@ -88,7 +86,6 @@ namespace Final_Capstone_Venue_Site.Repositories
                             Email = DbUtils.GetString(reader, "Email"),
                             Password = DbUtils.GetString(reader, "Password"),
                             IsAdmin = DbUtils.GetBoolean(reader, "IsAdmin"),
-                            DisplayName = DbUtils.GetString(reader, "DisplayName"),
                         };
 
                     }
@@ -110,8 +107,14 @@ namespace Final_Capstone_Venue_Site.Repositories
 
 
 
-        //GET BY DISPLAY NAME
-        public Users GetUserByDisplayName(string displayName)
+
+
+
+
+
+
+        //GET BY EMAIL
+        public Users GetUserByEmail(string email)
         {
             using (var conn = Connection)
             {
@@ -119,11 +122,11 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, Email, Password, IsAdmin, DisplayName 
-                        FROM [User]
-                        WHERE DisplayName = @displayName";
+                        SELECT Id, Email, Password, IsAdmin
+                        FROM [Users]
+                        WHERE Email = @email";
 
-                    DbUtils.AddParameter(cmd, "@displayName", displayName);
+                    DbUtils.AddParameter(cmd, "@email", email);
 
                     Users user = null;
 
@@ -137,7 +140,6 @@ namespace Final_Capstone_Venue_Site.Repositories
                             Email = DbUtils.GetString(reader, "Email"),
                             Password = DbUtils.GetString(reader, "Password"),
                             IsAdmin = DbUtils.GetBoolean(reader, "IsAdmin"),
-                            DisplayName = DbUtils.GetString(reader, "DisplayName")
                         };
                     }
 
@@ -156,9 +158,6 @@ namespace Final_Capstone_Venue_Site.Repositories
 
 
 
-
-
-
         //ADD 
         public void Add(Users user)
         {
@@ -168,14 +167,13 @@ namespace Final_Capstone_Venue_Site.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Users (Email, Password, IsAdmin, DisplayName)
+                        INSERT INTO Users (Email, Password, IsAdmin)
                         OUTPUT INSERTED.ID
-                        VALUES (@Email, @Password, @IsAdmin, @DisplayName)
+                        VALUES (@Email, @Password, @IsAdmin)
                                        ";
                     DbUtils.AddParameter(cmd, "@Email", user.Email);
                     DbUtils.AddParameter(cmd, "@Password", user.Password);
                     DbUtils.AddParameter(cmd, "@IsAdmin", user.IsAdmin);
-                    DbUtils.AddParameter(cmd, "@DisplayName", user.DisplayName);
 
                     user.Id = (int)cmd.ExecuteScalar();
                 }
@@ -207,13 +205,11 @@ namespace Final_Capstone_Venue_Site.Repositories
                            SET Email = @Email,
                                Password = @Password,
                                IsAdmin = @IsAdmin,
-                               DisplayName = @DisplayName
                          WHERE Id =@Id 
                                        ";
                     DbUtils.AddParameter(cmd, "@Email", user.Email);
                     DbUtils.AddParameter(cmd, "@Password", user.Password);
                     DbUtils.AddParameter(cmd, "@IsAdmin", user.IsAdmin);
-                    DbUtils.AddParameter(cmd, "@DisplayName", user.DisplayName);
                     DbUtils.AddParameter(cmd, "@Id", user.Id);
 
                     cmd.ExecuteNonQuery();
